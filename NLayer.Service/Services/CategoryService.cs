@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLayer.Service.Exceptions;
 
 namespace NLayer.Service.Services
 {
@@ -28,8 +29,19 @@ namespace NLayer.Service.Services
         public async Task<CustomResponseDto<CategoryWithProductsDto>> GetSingleCategoryByIdWithProductsAsync(int categoryId)
         {
             var category = await _categoryRepository.GetSingleCategoryByIdWithProductsAsync(categoryId);
-            var categoryDto= _mapper.Map<CategoryWithProductsDto>(category);
-            return CustomResponseDto<CategoryWithProductsDto>.Success(200 ,categoryDto);
+
+            if (category == null)
+            {
+                throw new NotFoundException($"{typeof(CategoryWithProductsDto).Name} ({categoryId})  not found");
+            }
+
+            var categoryDto = _mapper.Map<CategoryWithProductsDto>(category);
+
+            return CustomResponseDto<CategoryWithProductsDto>.Success(200, categoryDto);
+
+
+
+            
         }
     }
 }

@@ -66,6 +66,245 @@ namespace NLayerRepository.Migrations
                         });
                 });
 
+            modelBuilder.Entity("NLayer.Core.Models.Customers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("E_Mail")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            E_Mail = "john.doe@example.com",
+                            Name = "John",
+                            PhoneNumber = " 123456789",
+                            SurName = "Doe",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            E_Mail = "jane.smith@example.com",
+                            Name = "Jane",
+                            PhoneNumber = "987654321",
+                            SurName = "Smith",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            E_Mail = "alice.johnson@example.com",
+                            Name = "Alice",
+                            PhoneNumber = " 555555555",
+                            SurName = "Johnson",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            E_Mail = "bob.williams@example.com",
+                            Name = "Bob",
+                            PhoneNumber = "777777777",
+                            SurName = "Williams",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            E_Mail = "eve.taylor@example.com",
+                            Name = "Eve",
+                            PhoneNumber = " 999999999",
+                            SurName = "Taylor",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            E_Mail = "michael.johnson@example.com",
+                            Name = "Michael",
+                            PhoneNumber = "111111111",
+                            SurName = "Johnson",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            E_Mail = "emily.davis@example.com",
+                            Name = "Emily",
+                            PhoneNumber = " 222222222",
+                            SurName = "Davis",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            E_Mail = "daniel.brown@example.com",
+                            Name = "Daniel",
+                            PhoneNumber = "333333333",
+                            SurName = "Brown",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            E_Mail = "olivia.miller@example.com",
+                            Name = "Olivia",
+                            PhoneNumber = " 444444444",
+                            SurName = "Miller",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            E_Mail = "william.clark@example.com",
+                            Name = "William",
+                            PhoneNumber = "555555555",
+                            SurName = "Clark",
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("NLayer.Core.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("TransactionId")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payments", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 100.50m,
+                            Date = new DateTime(2023, 12, 26, 9, 12, 29, 363, DateTimeKind.Local).AddTicks(6282),
+                            PaymentMethod = "Kredi Kartı",
+                            TransactionId = "ABC123"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 50.75m,
+                            Date = new DateTime(2023, 12, 24, 9, 12, 29, 363, DateTimeKind.Local).AddTicks(6295),
+                            PaymentMethod = "Nakit",
+                            TransactionId = "XYZ789"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = 200.00m,
+                            Date = new DateTime(2023, 12, 21, 9, 12, 29, 363, DateTimeKind.Local).AddTicks(6301),
+                            PaymentMethod = "Havale",
+                            TransactionId = "DEF456"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 75.25m,
+                            Date = new DateTime(2023, 12, 25, 9, 12, 29, 363, DateTimeKind.Local).AddTicks(6302),
+                            PaymentMethod = "Kripto Para",
+                            TransactionId = "GHI789"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Amount = 120.90m,
+                            Date = new DateTime(2023, 12, 23, 9, 12, 29, 363, DateTimeKind.Local).AddTicks(6303),
+                            PaymentMethod = "Çek",
+                            TransactionId = "JKL012"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Amount = 85.60m,
+                            Date = new DateTime(2023, 12, 22, 9, 12, 29, 363, DateTimeKind.Local).AddTicks(6305),
+                            PaymentMethod = "Banka Kartı",
+                            TransactionId = "MNO345"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Amount = 150.25m,
+                            Date = new DateTime(2023, 12, 20, 9, 12, 29, 363, DateTimeKind.Local).AddTicks(6306),
+                            PaymentMethod = "EFT",
+                            TransactionId = "PQR678"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Amount = 60.30m,
+                            Date = new DateTime(2023, 12, 19, 9, 12, 29, 363, DateTimeKind.Local).AddTicks(6307),
+                            PaymentMethod = "Sanal Cüzdan",
+                            TransactionId = "STU901"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Amount = 40.15m,
+                            Date = new DateTime(2023, 12, 18, 9, 12, 29, 363, DateTimeKind.Local).AddTicks(6308),
+                            PaymentMethod = "Mobil Ödeme",
+                            TransactionId = "VWX234"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Amount = 110.75m,
+                            Date = new DateTime(2023, 12, 17, 9, 12, 29, 363, DateTimeKind.Local).AddTicks(6309),
+                            PaymentMethod = "Fatura Ödeme",
+                            TransactionId = "YZA567"
+                        });
+                });
+
             modelBuilder.Entity("NLayer.Core.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -105,7 +344,7 @@ namespace NLayerRepository.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 10, 25, 17, 10, 59, 209, DateTimeKind.Local).AddTicks(8017),
+                            CreatedDate = new DateTime(2023, 12, 26, 9, 12, 29, 364, DateTimeKind.Local).AddTicks(806),
                             Name = "Kalem 1",
                             Price = 100m,
                             Stock = 20
@@ -114,7 +353,7 @@ namespace NLayerRepository.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 10, 25, 17, 10, 59, 209, DateTimeKind.Local).AddTicks(8025),
+                            CreatedDate = new DateTime(2023, 12, 26, 9, 12, 29, 364, DateTimeKind.Local).AddTicks(811),
                             Name = "Kalem 2",
                             Price = 200m,
                             Stock = 30
@@ -123,7 +362,7 @@ namespace NLayerRepository.Migrations
                         {
                             Id = 3,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 10, 25, 17, 10, 59, 209, DateTimeKind.Local).AddTicks(8026),
+                            CreatedDate = new DateTime(2023, 12, 26, 9, 12, 29, 364, DateTimeKind.Local).AddTicks(812),
                             Name = "Kalem 3",
                             Price = 600m,
                             Stock = 60
@@ -132,7 +371,7 @@ namespace NLayerRepository.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2023, 10, 25, 17, 10, 59, 209, DateTimeKind.Local).AddTicks(8027),
+                            CreatedDate = new DateTime(2023, 12, 26, 9, 12, 29, 364, DateTimeKind.Local).AddTicks(813),
                             Name = "Kiataplar 1",
                             Price = 680m,
                             Stock = 26
@@ -141,7 +380,7 @@ namespace NLayerRepository.Migrations
                         {
                             Id = 5,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2023, 10, 25, 17, 10, 59, 209, DateTimeKind.Local).AddTicks(8029),
+                            CreatedDate = new DateTime(2023, 12, 26, 9, 12, 29, 364, DateTimeKind.Local).AddTicks(814),
                             Name = "Kitaplar 2",
                             Price = 650m,
                             Stock = 320

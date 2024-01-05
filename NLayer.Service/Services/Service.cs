@@ -22,7 +22,7 @@ namespace NLayer.Service.Services
 
         public async Task<T> AddAsync(T entity)
         {
-           await _repository.AddAsync(entity);
+            await _repository.AddAsync(entity);
             await _unitOfWork.CommitAsync();
             return entity;
         }
@@ -46,9 +46,9 @@ namespace NLayer.Service.Services
 
         public async Task<T> GetByIdAsync(int id)
         {
-            var hasProduct= await _repository.GetByIdAsync(id);
+            var hasProduct = await _repository.GetByIdAsync(id);
 
-            if(hasProduct==null)
+            if (hasProduct == null)
             {
                 throw new NotFoundException($"{typeof(T).Name} ({id})  not found");
             }
@@ -59,7 +59,7 @@ namespace NLayer.Service.Services
         {
             _repository.Remove(entity);
             await _unitOfWork.CommitAsync();
-         }
+        }
 
         public async Task RemoveRangeAsync(IEnumerable<T> entities)
         {
@@ -76,7 +76,7 @@ namespace NLayer.Service.Services
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
-            return _repository.Where(expression); 
+            return _repository.Where(expression);
         }
     }
 }

@@ -23,9 +23,5 @@ namespace NLayer.Core
 
 
 
-
-
-
-
     }
 }

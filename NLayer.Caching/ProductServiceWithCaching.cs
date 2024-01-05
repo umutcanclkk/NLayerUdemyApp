@@ -7,12 +7,7 @@ using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
 using NLayer.Service.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLayer.Caching
 {
@@ -33,12 +28,14 @@ namespace NLayer.Caching
 
 
 
-            if(!_memoryCache.TryGetValue(CacheProductKey, out _))
+            if (!_memoryCache.TryGetValue(CacheProductKey, out _))
             {
-                _memoryCache.Set(CacheProductKey,repository.GetAll().ToList());
+                _memoryCache.Set(CacheProductKey,_productRepository.GetProductsWitCategory().Result);// Result Koymamızın sebebi sekron şeklinde dönmesi
             }
 
         }
+
+
 
         public async Task<Product> AddAsync(Product entity)
         {
@@ -48,6 +45,8 @@ namespace NLayer.Caching
             return entity;
         }
 
+
+
         public async Task<IEnumerable<Product>> AddRangeAsync(IEnumerable<Product> entities)
         {
             await _productRepository.AddRangeAsync(entities);
@@ -56,15 +55,21 @@ namespace NLayer.Caching
             return entities;
         }
 
+
+
         public Task<bool> AnyAsync(Expression<Func<Product, bool>> expression)
         {
             throw new NotImplementedException();
         }
 
+
+
         public Task<IEnumerable<Product>> GetAllAsync()
         {
-           return Task.FromResult(_memoryCache.Get<IEnumerable<Product>>(CacheProductKey));
+             return Task.FromResult(_memoryCache.Get<IEnumerable<Product>>(CacheProductKey));
         }
+
+
 
         public Task<Product> GetByIdAsync(int id)
         {
@@ -78,15 +83,20 @@ namespace NLayer.Caching
             return Task.FromResult(product);
         }
 
-        public async Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWitCategory()
+
+
+
+        public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWitCategory()
         {
-           
-            var products= await _productRepository.GetProductsWitCategory();
 
-            var productsWithCategoryDto= _mapper.Map<List<ProductWithCategoryDto>>(products);
+            var products = _productRepository.GetProductsWitCategory();
 
-            return CustomResponseDto<List<ProductWithCategoryDto>>.Success(200,productsWithCategoryDto);
+            var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
+
+            return Task.FromResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsWithCategoryDto));
         }
+
+
 
         public async Task RemoveAsync(Product entity)
         {
@@ -95,6 +105,8 @@ namespace NLayer.Caching
             await CacheAllProductsAsync();
         }
 
+
+
         public async Task RemoveRangeAsync(IEnumerable<Product> entities)
         {
             _productRepository.RemoveRange(entities);
@@ -102,12 +114,16 @@ namespace NLayer.Caching
             await CacheAllProductsAsync();
         }
 
+
+
         public async Task UpdateAsync(Product entity)
         {
             _productRepository.Update(entity);
             await _unitOfWork.CommitAsync();
             await CacheAllProductsAsync();
         }
+
+
 
         public IQueryable<Product> Where(Expression<Func<Product, bool>> expression)
         {
@@ -118,7 +134,7 @@ namespace NLayer.Caching
 
         public async Task CacheAllProductsAsync()
         {
-            _memoryCache.Set(CacheProductKey,await _productRepository.GetAll().ToListAsync());
+            _memoryCache.Set(CacheProductKey, await _productRepository.GetAll().ToListAsync());
         }
 
 

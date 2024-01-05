@@ -22,5 +22,6 @@ namespace NLayer.Core.Repositories
 
         void RemoveRange (IEnumerable<T> entities);
 
+        //bunlar ortak methotlar  olduğu tek bir interface eklememiz kodumuzun daha base hale getirir.
     }
 }

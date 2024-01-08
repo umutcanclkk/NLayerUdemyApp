@@ -1,18 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.IdentityModel.Tokens;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
-using NLayer.Repository.Repositories;
-using NLayerRepository.Repositories;
-using NLayerRepository.UnitOfWorks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLayer.Service.Services
 {

@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NLayer.Core.IServices;
-using NLayer.Core;
-using NLayer.Core.Services;
-using NLayer.Core.Models;
 using NLayer.Core.DTOs;
-using NLayer.Service.Services;
-using Autofac.Core;
+using NLayer.Core.IServices;
+using NLayer.Core.Models;
+using NLayer.Core.Services;
 using NLayer.Service.Validations;
 
 namespace NLayer.API.Controllers
@@ -26,6 +22,7 @@ namespace NLayer.API.Controllers
 
         }
 
+
         [HttpGet]
         public async Task<IActionResult> All()
         {
@@ -33,6 +30,7 @@ namespace NLayer.API.Controllers
             var customersDto = _mapper.Map<List<CustomersDto>>(customers.ToList());
             return CreateActionResult(CustomResponseDto<List<CustomersDto>>.Success(200, customersDto));
         }
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -42,6 +40,7 @@ namespace NLayer.API.Controllers
             return CreateActionResult(CustomResponseDto<CustomersDto>.Success(200, customersDto));
 
         }
+
 
         [HttpPut]
         public async Task<IActionResult> Update(CustomersUpdateDto customersDto)
@@ -67,6 +66,7 @@ namespace NLayer.API.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Removet(int id)
         {
@@ -76,6 +76,7 @@ namespace NLayer.API.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));// NoContentDto yazmamızın  sebebi geri birşey dönememiz
 
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Save(CustomersDto customersDto)
